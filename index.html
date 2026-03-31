@@ -8,10 +8,15 @@
 </head>
 <body>
   <div class="container">
+    <div class="top-controls">
+      <button id="langToggle" class="control-btn">English</button>
+      <button id="themeToggle" class="control-btn">다크모드</button>
+    </div>
+
     <header class="hero">
-      <p class="badge">Demo Page</p>
-      <h1>오늘의 주식 종목추천</h1>
-      <p class="subtitle">
+      <p class="badge" id="badgeText">Demo Page</p>
+      <h1 id="titleText">오늘의 주식 종목추천</h1>
+      <p class="subtitle" id="subtitleText">
         학습용 예시 페이지입니다. 실제 투자 추천이 아닙니다.
       </p>
       <p id="today" class="date"></p>
@@ -19,40 +24,42 @@
 
     <main>
       <section class="stock-list" id="stockList"></section>
+
+      <section class="contact-section">
+        <h2 id="contactTitle">제휴 문의</h2>
+        <p class="contact-desc" id="contactDesc">광고, 협업, 제휴 관련 문의를 남겨주세요.</p>
+
+        <form
+          class="contact-form"
+          action="https://formspree.io/f/mdapzowg"
+          method="POST"
+        >
+          <input
+            type="email"
+            name="email"
+            id="emailInput"
+            placeholder="이메일 주소"
+            required
+          />
+
+          <textarea
+            name="message"
+            id="messageInput"
+            rows="6"
+            placeholder="문의 내용을 적어주세요."
+            required
+          ></textarea>
+
+          <button type="submit" id="submitBtn">보내기</button>
+        </form>
+      </section>
     </main>
 
     <footer class="footer">
-      <p>본 페이지는 예시 데이터로 제작되었습니다.</p>
+      <p id="footerText">본 페이지는 예시 데이터로 제작되었습니다.</p>
     </footer>
   </div>
 
   <script src="main.js"></script>
 </body>
 </html>
-
-<section class="contact-section">
-  <h2>제휴 문의</h2>
-  <p class="contact-desc">광고, 협업, 제휴 관련 문의를 남겨주세요.</p>
-
-  <form
-    class="contact-form"
-    action="https://formspree.io/f/mdapzowg"
-    method="POST"
-  >
-    <input
-      type="email"
-      name="email"
-      placeholder="이메일 주소"
-      required
-    />
-
-    <textarea
-      name="message"
-      rows="6"
-      placeholder="문의 내용을 적어주세요."
-      required
-    ></textarea>
-
-    <button type="submit">보내기</button>
-  </form>
-</section>
