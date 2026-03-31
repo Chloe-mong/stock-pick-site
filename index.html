@@ -1,14 +1,32 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hello World</title>
-  <link href='/style.css' rel='stylesheet'>
+  <title>오늘의 주식 종목추천</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Hello, world!</h1>
-  <button onclick="console.log('hello');">Press me</button>
-  <script defer type="text/javascript" src="/main.js"></script>
+  <div class="container">
+    <header class="hero">
+      <p class="badge">Demo Page</p>
+      <h1>오늘의 주식 종목추천</h1>
+      <p class="subtitle">
+        학습용 예시 페이지입니다. 실제 투자 추천이 아닙니다.
+      </p>
+      <p id="today" class="date"></p>
+    </header>
+
+    <main>
+      <section class="stock-list" id="stockList"></section>
+    </main>
+
+    <footer class="footer">
+      <p>본 페이지는 예시 데이터로 제작되었습니다.</p>
+    </footer>
+  </div>
+
+  <script src="main.js"></script>
 </body>
 </html>
+

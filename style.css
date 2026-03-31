@@ -1,1 +1,93 @@
-/* Add styles here */
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f7fb;
+    color: #1f2937;
+  }
+  
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 60px;
+  }
+  
+  .hero {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .badge {
+    display: inline-block;
+    margin: 0 0 12px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #e0ecff;
+    color: #2457d6;
+    font-size: 14px;
+    font-weight: bold;
+  }
+  
+  h1 {
+    margin: 0 0 12px;
+    font-size: 40px;
+  }
+  
+  .subtitle {
+    margin: 0 0 12px;
+    color: #4b5563;
+    font-size: 18px;
+  }
+  
+  .date {
+    margin: 0;
+    color: #6b7280;
+    font-size: 15px;
+  }
+  
+  .stock-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+  }
+  
+  .card {
+    background: white;
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  }
+  
+  .card h2 {
+    margin: 0 0 8px;
+    font-size: 24px;
+  }
+  
+  .ticker {
+    display: inline-block;
+    margin-bottom: 16px;
+    color: #2563eb;
+    font-weight: bold;
+  }
+  
+  .section-title {
+    margin: 16px 0 8px;
+    font-size: 14px;
+    color: #6b7280;
+    text-transform: uppercase;
+  }
+  
+  .card p {
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  .footer {
+    margin-top: 40px;
+    text-align: center;
+    color: #6b7280;
+    font-size: 14px;
+  }/* Add styles here */
