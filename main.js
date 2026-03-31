@@ -5,25 +5,19 @@ const stockData = {
           name: "NVIDIA",
           ticker: "NVDA",
           summary: "AI 반도체 대표 수혜주 예시입니다.",
-          thesis: "AI 인프라 확장 기대가 큰 대표 성장주입니다.",
-          risk: "단기 급등 이후 밸류에이션 부담이 커질 수 있습니다.",
-          conclusion: "AI 투자심리의 중심에 있는 상징적 종목입니다."
+          link: "nvda.html"
         },
         {
           name: "Amazon",
           ticker: "AMZN",
           summary: "클라우드와 광고 성장이 결합된 예시 종목입니다.",
-          thesis: "AWS와 광고 비즈니스의 동반 확장이 핵심 포인트입니다.",
-          risk: "소비 둔화와 클라우드 성장 둔화 가능성을 봐야 합니다.",
-          conclusion: "플랫폼 확장성과 현금창출력을 동시에 가진 대형주입니다."
+          link: "amzn.html"
         },
         {
           name: "Meta",
           ticker: "META",
           summary: "광고 효율과 AI 기대가 결합된 예시 종목입니다.",
-          thesis: "광고 수익성과 AI 투자 기대가 동시에 반영됩니다.",
-          risk: "광고 경기 둔화 시 밸류 재평가 가능성이 있습니다.",
-          conclusion: "빅테크 내 수익성 개선 스토리가 강한 편입니다."
+          link: "meta.html"
         }
       ],
       reports: [
@@ -67,8 +61,8 @@ const stockData = {
         messagePlaceholder: "문의 내용을 적어주세요.",
         submitBtn: "보내기",
         footer: "본 페이지는 예시 데이터로 제작된 데모 프로젝트입니다.",
-        empty: "종목을 입력하거나 카드 버튼을 눌러보세요.",
-        viewBtn: "이 종목 보기",
+        empty: "종목을 입력하면 메인 추천 종목 기준으로 안내합니다.",
+        viewBtn: "상세 보기",
         thesisLabel: "핵심 포인트",
         riskLabel: "리스크",
         conclusionLabel: "한 줄 요약",
@@ -83,25 +77,19 @@ const stockData = {
           name: "NVIDIA",
           ticker: "NVDA",
           summary: "An example stock benefiting from AI chip demand.",
-          thesis: "A major growth stock tied to AI infrastructure expansion.",
-          risk: "Valuation pressure may rise after sharp upside moves.",
-          conclusion: "A symbolic stock at the center of the AI narrative."
+          link: "nvda.html"
         },
         {
           name: "Amazon",
           ticker: "AMZN",
           summary: "An example stock driven by cloud and ad growth.",
-          thesis: "AWS and advertising expansion are the key pillars.",
-          risk: "Consumer weakness and slower cloud growth are risks.",
-          conclusion: "A mega-cap with both platform strength and cash flow."
+          link: "amzn.html"
         },
         {
           name: "Meta",
           ticker: "META",
           summary: "An example stock supported by ad efficiency and AI optimism.",
-          thesis: "Ad profitability and AI expectations support the story.",
-          risk: "A weaker ad cycle may pressure sentiment.",
-          conclusion: "One of the stronger profitability recovery stories in big tech."
+          link: "meta.html"
         }
       ],
       reports: [
@@ -139,14 +127,14 @@ const stockData = {
         reportTitle: "Trending Reports",
         labTitle: "Mini Stock Lab",
         inputPlaceholder: "Enter ticker (ex: NVDA)",
-        analyzeBtn: "View Analysis",
+        analyzeBtn: "View Page",
         contactTitle: "Partnership Inquiry",
         emailPlaceholder: "Email address",
         messagePlaceholder: "Write your message",
         submitBtn: "Send",
         footer: "This page is a demo project built with sample data.",
-        empty: "Type a ticker or click one of the stock cards.",
-        viewBtn: "View This Stock",
+        empty: "Enter a ticker to move to one of the sample detail pages.",
+        viewBtn: "View Detail",
         thesisLabel: "Key Point",
         riskLabel: "Risk",
         conclusionLabel: "One-line Summary",
@@ -172,10 +160,11 @@ const stockData = {
     document.body.classList.toggle("dark-mode", isDarkMode);
   }
   
-  function findStock(ticker) {
-    return stockData[currentLanguage].picks.find(
+  function getLinkByTicker(ticker) {
+    const found = stockData[currentLanguage].picks.find(
       (item) => item.ticker.toLowerCase() === ticker.toLowerCase()
     );
+    return found ? found.link : null;
   }
   
   function renderPicks() {
@@ -189,7 +178,7 @@ const stockData = {
         <h3>${stock.name}</h3>
         <span class="ticker">${stock.ticker}</span>
         <p>${stock.summary}</p>
-        <button class="card-btn" data-ticker="${stock.ticker}">${ui.viewBtn}</button>
+        <button class="card-btn" data-link="${stock.link}">${ui.viewBtn}</button>
       `;
       todayPicks.appendChild(card);
     });
@@ -211,27 +200,9 @@ const stockData = {
     });
   }
   
-  function renderAnalysis(stock) {
+  function renderLabMessage() {
     const { ui } = stockData[currentLanguage];
-  
-    if (!stock) {
-      analysisResult.innerHTML = `<p class="muted">${ui.empty}</p>`;
-      return;
-    }
-  
-    analysisResult.innerHTML = `
-      <h3>${stock.name}</h3>
-      <div class="meta">${stock.ticker}</div>
-  
-      <div class="label">${ui.thesisLabel}</div>
-      <p>${stock.thesis}</p>
-  
-      <div class="label">${ui.riskLabel}</div>
-      <p>${stock.risk}</p>
-  
-      <div class="label">${ui.conclusionLabel}</div>
-      <p>${stock.conclusion}</p>
-    `;
+    analysisResult.innerHTML = `<p class="muted">${ui.empty}</p>`;
   }
   
   function renderStaticText() {
@@ -260,7 +231,7 @@ const stockData = {
     renderStaticText();
     renderPicks();
     renderReports();
-    renderAnalysis(null);
+    renderLabMessage();
   }
   
   langToggle.addEventListener("click", () => {
@@ -276,16 +247,18 @@ const stockData = {
   });
   
   analyzeBtn.addEventListener("click", () => {
-    const stock = findStock(tickerInput.value.trim());
-    renderAnalysis(stock);
+    const link = getLinkByTicker(tickerInput.value.trim());
+    if (link) {
+      window.location.href = link;
+    } else {
+      renderLabMessage();
+    }
   });
   
   todayPicks.addEventListener("click", (event) => {
     const button = event.target.closest(".card-btn");
     if (!button) return;
-  
-    const stock = findStock(button.dataset.ticker);
-    renderAnalysis(stock);
+    window.location.href = button.dataset.link;
   });
   
   renderAll();

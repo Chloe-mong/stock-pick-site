@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Amazon Detail</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <div class="logo">Stock Brief Lab</div>
+      <div class="top-controls">
+        <button id="langToggle" class="control-btn">English</button>
+        <button id="themeToggle" class="control-btn">다크모드</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <p class="badge" id="badgeText">Stock Detail</p>
+      <h1 id="stockTitle">Amazon</h1>
+      <p class="hero-subtitle" id="stockSubtitle">클라우드와 광고 성장이 결합된 예시 상세 페이지입니다.</p>
+    </section>
+
+    <section class="section">
+      <div class="analysis-card">
+        <div class="meta" id="stockTicker">AMZN</div>
+
+        <div class="label" id="label1">핵심 포인트</div>
+        <p id="point1">AWS와 광고 사업의 동반 성장이 핵심 포인트입니다.</p>
+
+        <div class="label" id="label2">리스크</div>
+        <p id="point2">소비 둔화와 클라우드 성장 둔화 가능성을 봐야 합니다.</p>
+
+        <div class="label" id="label3">한 줄 요약</div>
+        <p id="point3">플랫폼 확장성과 현금창출력을 동시에 가진 대형주 예시입니다.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <a href="index.html" class="card-btn" id="backBtn" style="display:inline-block;text-align:center;text-decoration:none;max-width:220px;">메인으로 돌아가기</a>
+    </section>
+
+    <footer class="footer" id="footerText">
+      본 페이지는 예시 데이터로 제작된 데모 프로젝트입니다.
+    </footer>
+  </div>
+
+  <script>
+    let currentLanguage = localStorage.getItem("language") || "ko";
+    let isDarkMode = localStorage.getItem("theme") === "dark";
+
+    function applyTheme() {
+      document.body.classList.toggle("dark-mode", isDarkMode);
+    }
+
+    function renderText() {
+      if (currentLanguage === "ko") {
+        document.documentElement.lang = "ko";
+        document.getElementById("langToggle").textContent = "English";
+        document.getElementById("themeToggle").textContent = isDarkMode ? "라이트모드" : "다크모드";
+        document.getElementById("badgeText").textContent = "Stock Detail";
+        document.getElementById("stockTitle").textContent = "Amazon";
+        document.getElementById("stockSubtitle").textContent = "클라우드와 광고 성장이 결합된 예시 상세 페이지입니다.";
+        document.getElementById("label1").textContent = "핵심 포인트";
+        document.getElementById("label2").textContent = "리스크";
+        document.getElementById("label3").textContent = "한 줄 요약";
+        document.getElementById("point1").textContent = "AWS와 광고 사업의 동반 성장이 핵심 포인트입니다.";
+        document.getElementById("point2").textContent = "소비 둔화와 클라우드 성장 둔화 가능성을 봐야 합니다.";
+        document.getElementById("point3").textContent = "플랫폼 확장성과 현금창출력을 동시에 가진 대형주 예시입니다.";
+        document.getElementById("backBtn").textContent = "메인으로 돌아가기";
+        document.getElementById("footerText").textContent = "본 페이지는 예시 데이터로 제작된 데모 프로젝트입니다.";
+      } else {
+        document.documentElement.lang = "en";
+        document.getElementById("langToggle").textContent = "한국어";
+        document.getElementById("themeToggle").textContent = isDarkMode ? "Light Mode" : "Dark Mode";
+        document.getElementById("badgeText").textContent = "Stock Detail";
+        document.getElementById("stockTitle").textContent = "Amazon";
+        document.getElementById("stockSubtitle").textContent = "A sample detail page combining cloud and advertising growth.";
+        document.getElementById("label1").textContent = "Key Point";
+        document.getElementById("label2").textContent = "Risk";
+        document.getElementById("label3").textContent = "One-line Summary";
+        document.getElementById("point1").textContent = "The combined growth of AWS and advertising is the key point.";
+        document.getElementById("point2").textContent = "Consumer weakness and slower cloud growth remain the main risks.";
+        document.getElementById("point3").textContent = "A mega-cap example with both platform scale and cash generation.";
+        document.getElementById("backBtn").textContent = "Back to Home";
+        document.getElementById("footerText").textContent = "This page is a demo project built with sample data.";
+      }
+    }
+
+    document.getElementById("langToggle").addEventListener("click", () => {
+      currentLanguage = currentLanguage === "ko" ? "en" : "ko";
+      localStorage.setItem("language", currentLanguage);
+      renderText();
+    });
+
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      isDarkMode = !isDarkMode;
+      localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+      applyTheme();
+      renderText();
+    });
+
+    applyTheme();
+    renderText();
+  </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NVIDIA Detail</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="site-header">
+      <div class="logo">Stock Brief Lab</div>
+      <div class="top-controls">
+        <button id="langToggle" class="control-btn">English</button>
+        <button id="themeToggle" class="control-btn">다크모드</button>
+      </div>
+    </header>
+
+    <section class="hero">
+      <p class="badge" id="badgeText">Stock Detail</p>
+      <h1 id="stockTitle">NVIDIA</h1>
+      <p class="hero-subtitle" id="stockSubtitle">AI 반도체 대표 수혜주 예시 상세 페이지입니다.</p>
+    </section>
+
+    <section class="section">
+      <div class="analysis-card">
+        <div class="meta" id="stockTicker">NVDA</div>
+
+        <div class="label" id="label1">핵심 포인트</div>
+        <p id="point1">AI 인프라 확장 기대가 가장 강하게 반영되는 대표 종목입니다.</p>
+
+        <div class="label" id="label2">리스크</div>
+        <p id="point2">단기 급등 이후 밸류에이션 부담이 커질 수 있습니다.</p>
+
+        <div class="label" id="label3">한 줄 요약</div>
+        <p id="point3">AI 투자심리의 중심에 있는 상징적 종목입니다.</p>
+      </div>
+    </section>
+
+    <section class="section">
+      <a href="index.html" class="card-btn" id="backBtn" style="display:inline-block;text-align:center;text-decoration:none;max-width:220px;">메인으로 돌아가기</a>
+    </section>
+
+    <footer class="footer" id="footerText">
+      본 페이지는 예시 데이터로 제작된 데모 프로젝트입니다.
+    </footer>
+  </div>
+
+  <script>
+    let currentLanguage = localStorage.getItem("language") || "ko";
+    let isDarkMode = localStorage.getItem("theme") === "dark";
+
+    function applyTheme() {
+      document.body.classList.toggle("dark-mode", isDarkMode);
+    }
+
+    function renderText() {
+      if (currentLanguage === "ko") {
+        document.documentElement.lang = "ko";
+        document.getElementById("langToggle").textContent = "English";
+        document.getElementById("themeToggle").textContent = isDarkMode ? "라이트모드" : "다크모드";
+        document.getElementById("badgeText").textContent = "Stock Detail";
+        document.getElementById("stockTitle").textContent = "NVIDIA";
+        document.getElementById("stockSubtitle").textContent = "AI 반도체 대표 수혜주 예시 상세 페이지입니다.";
+        document.getElementById("label1").textContent = "핵심 포인트";
+        document.getElementById("label2").textContent = "리스크";
+        document.getElementById("label3").textContent = "한 줄 요약";
+        document.getElementById("point1").textContent = "AI 인프라 확장 기대가 가장 강하게 반영되는 대표 종목입니다.";
+        document.getElementById("point2").textContent = "단기 급등 이후 밸류에이션 부담이 커질 수 있습니다.";
+        document.getElementById("point3").textContent = "AI 투자심리의 중심에 있는 상징적 종목입니다.";
+        document.getElementById("backBtn").textContent = "메인으로 돌아가기";
+        document.getElementById("footerText").textContent = "본 페이지는 예시 데이터로 제작된 데모 프로젝트입니다.";
+      } else {
+        document.documentElement.lang = "en";
+        document.getElementById("langToggle").textContent = "한국어";
+        document.getElementById("themeToggle").textContent = isDarkMode ? "Light Mode" : "Dark Mode";
+        document.getElementById("badgeText").textContent = "Stock Detail";
+        document.getElementById("stockTitle").textContent = "NVIDIA";
+        document.getElementById("stockSubtitle").textContent = "A sample detail page for a major AI semiconductor stock.";
+        document.getElementById("label1").textContent = "Key Point";
+        document.getElementById("label2").textContent = "Risk";
+        document.getElementById("label3").textContent = "One-line Summary";
+        document.getElementById("point1").textContent = "This is a leading stock most directly tied to AI infrastructure expansion.";
+        document.getElementById("point2").textContent = "Valuation pressure may rise after strong upside moves.";
+        document.getElementById("point3").textContent = "A symbolic stock at the center of the AI investment narrative.";
+        document.getElementById("backBtn").textContent = "Back to Home";
+        document.getElementById("footerText").textContent = "This page is a demo project built with sample data.";
+      }
+    }
+
+    document.getElementById("langToggle").addEventListener("click", () => {
+      currentLanguage = currentLanguage === "ko" ? "en" : "ko";
+      localStorage.setItem("language", currentLanguage);
+      renderText();
+    });
+
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      isDarkMode = !isDarkMode;
+      localStorage.setItem("theme", isDarkMode ? "dark" : "light");
+      applyTheme();
+      renderText();
+    });
+
+    applyTheme();
+    renderText();
+  </script>
+</body>
+</html>
