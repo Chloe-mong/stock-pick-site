@@ -3,60 +3,70 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>오늘의 주식 종목추천</title>
+  <title>Stock Brief Lab</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
-    <div class="top-controls">
-      <button id="langToggle" class="control-btn">English</button>
-      <button id="themeToggle" class="control-btn">다크모드</button>
-    </div>
-
-    <header class="hero">
-      <p class="badge" id="badgeText">Demo Page</p>
-      <h1 id="titleText">오늘의 주식 종목추천</h1>
-      <p class="subtitle" id="subtitleText">
-        학습용 예시 페이지입니다. 실제 투자 추천이 아닙니다.
-      </p>
-      <p id="today" class="date"></p>
+    <header class="site-header">
+      <div class="logo">Stock Brief Lab</div>
+      <div class="top-controls">
+        <button id="langToggle" class="control-btn">English</button>
+        <button id="themeToggle" class="control-btn">다크모드</button>
+      </div>
     </header>
 
-    <main>
-      <section class="stock-list" id="stockList"></section>
+    <section class="hero">
+      <p class="badge" id="badgeText">Demo Project</p>
+      <h1 id="heroTitle">AI 시대, 어떤 종목을 볼 것인가</h1>
+      <p class="hero-subtitle" id="heroSubtitle">
+        가짜 데이터로 만든 투자 미디어형 데모 페이지입니다.
+      </p>
+    </section>
 
-      <section class="contact-section">
+    <section class="section">
+      <div class="section-head">
+        <h2 id="todayTitle">오늘의 종목</h2>
+      </div>
+      <div class="grid" id="todayPicks"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <h2 id="reportTitle">트렌딩 리포트</h2>
+      </div>
+      <div class="grid reports" id="reportList"></div>
+    </section>
+
+    <section class="section lab-section">
+      <div class="section-head">
+        <h2 id="labTitle">종목 미니 랩</h2>
+      </div>
+
+      <div class="lab-box">
+        <input id="tickerInput" type="text" placeholder="티커 입력 (예: NVDA)" />
+        <button id="analyzeBtn">분석 보기</button>
+      </div>
+
+      <div class="analysis-card" id="analysisResult">
+        <p class="muted" id="analysisEmpty">종목을 입력하거나 카드 버튼을 눌러보세요.</p>
+      </div>
+    </section>
+
+    <section class="section contact-section">
+      <div class="section-head">
         <h2 id="contactTitle">제휴 문의</h2>
-        <p class="contact-desc" id="contactDesc">광고, 협업, 제휴 관련 문의를 남겨주세요.</p>
+      </div>
 
-        <form
-          class="contact-form"
-          action="https://formspree.io/f/mdapzowg"
-          method="POST"
-        >
-          <input
-            type="email"
-            name="email"
-            id="emailInput"
-            placeholder="이메일 주소"
-            required
-          />
+      <form class="contact-form" action="https://formspree.io/f/mdapzowg" method="POST">
+        <input type="email" name="email" id="emailInput" placeholder="이메일 주소" required />
+        <textarea name="message" id="messageInput" rows="6" placeholder="문의 내용을 적어주세요." required></textarea>
+        <button type="submit" id="submitBtn">보내기</button>
+      </form>
+    </section>
 
-          <textarea
-            name="message"
-            id="messageInput"
-            rows="6"
-            placeholder="문의 내용을 적어주세요."
-            required
-          ></textarea>
-
-          <button type="submit" id="submitBtn">보내기</button>
-        </form>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <p id="footerText">본 페이지는 예시 데이터로 제작되었습니다.</p>
+    <footer class="footer" id="footerText">
+      본 페이지는 예시 데이터로 제작된 데모 프로젝트입니다.
     </footer>
   </div>
 
